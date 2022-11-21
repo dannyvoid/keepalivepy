@@ -35,6 +35,7 @@ def countdown(t):
 
 def check_status(executable):
     exe = pathlib.Path(executable).name
+
     for proc in psutil.process_iter():
         if exe in proc.name():
             msg = "[OK] {} is running"
@@ -82,7 +83,6 @@ def main():
         os.system("cls")
 
         for app in apps:
-
             if pathlib.Path(app).exists():
                 if not check_status(app):
                     start_app(app)

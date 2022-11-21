@@ -1,0 +1,6 @@
+[user]
+apps = [
+    "C:/Program Files/Mullvad VPN/Mullvad VPN.exe",
+    "D:/Scoop/apps/thunderbird/current/thunderbird.exe",
+]
+wait_mins = 5

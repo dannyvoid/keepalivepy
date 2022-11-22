@@ -4,16 +4,15 @@ import psutil
 import pathlib
 import cursor
 import os
-import tomli
+import tomllib
 
 current_dir = pathlib.Path(__file__).parent.absolute()
 os.chdir(current_dir)
 
 with open("config.toml", "rb") as f:
     try:
-        config = tomli.load(f)
-
-    except tomli.TOMLDecodeError as e:
+        config = tomllib.load(f)
+    except tomllib.TOMLDecodeError as e:
         print(e)
         print("config.toml is invalid")
         input("Press enter to exit...")
@@ -49,13 +48,12 @@ def check_status(executable):
 
 def start_app(executable):
     exe = pathlib.Path(executable).name
+
     try:
         subprocess.Popen(executable)
-
     except Exception as e:
         msg = "[ERROR]: {}"
         print(msg.format(e))
-
     finally:
         msg = "[OK] {} is started"
         print(msg.format(exe))
@@ -68,11 +66,9 @@ def stop_app(executable):
         for proc in psutil.process_iter():
             if exe in proc.name():
                 proc.kill()
-
     except Exception as e:
         msg = "[ERROR]: {}"
         print(msg.format(e))
-
     finally:
         msg = "[OK] {} is stopped"
         print(msg.format(exe))
